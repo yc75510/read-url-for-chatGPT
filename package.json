@@ -1,0 +1,43 @@
+{
+  "name": "wxt-vue-starter",
+  "description": "manifest.json description",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "vue-tsc --noEmit",
+    "postinstall": "wxt prepare",
+    "lint": "NODE_ENV=development eslint . --fix",
+    "lint:prod": "NODE_ENV=production eslint . --fix",
+    "format": "prettier --write \"src/**/*.{vue,ts,js,json,md}\""
+  },
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "turndown": "^7.2.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/chrome": "^0.0.280",
+    "@types/turndown": "^5.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
+    "@wxt-dev/module-vue": "^1.0.1",
+    "@wxt-dev/unocss": "^1.0.0",
+    "eslint": "^9.18.0",
+    "eslint-define-config": "^2.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.4.2",
+    "typescript": "5.6.3",
+    "unocss": "^65.4.0",
+    "vue-tsc": "^2.1.10",
+    "wxt": "^0.19.13"
+  }
+}
