@@ -6,11 +6,11 @@
 ## 安装
 1. 克隆此仓库到本地：
    ```bash
-   git clone https://github.com/yourusername/copy-url-content-for-chatgpt.git
+   git clone https://github.com/yc75510/read-url-for-chatGPT
    ```
 2. 进入项目目录并安装依赖：
    ```bash
-   cd copy-url-content-for-chatgpt
+   cd read-url-for-chatGPT
    pnpm install
    ```
 3. 构建项目：
