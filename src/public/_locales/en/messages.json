@@ -1,0 +1,8 @@
+{
+  "extName": {
+    "message": "Read URL For chatGPT"
+  },
+  "extDescription": {
+    "message": "Get ChatGPT-ready Markdown from any URL."
+  }
+}
