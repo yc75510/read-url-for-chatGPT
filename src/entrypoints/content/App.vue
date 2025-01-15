@@ -4,19 +4,19 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 import { ToastAction } from '@/components/ui/toast'
 import { useToast } from '@/components/ui/toast/use-toast'
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog'
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 import { extractContent, copyText } from '@/utils/content-extractor';
 
 const { toast } = useToast()
-const isoModalOpened = defineModel<boolean>("isoModalOpened")
+const isModalOpened = defineModel<boolean>("isModalOpened")
 const extractContentData = ref({ markdown: '' })
 
 onMounted(() => {
@@ -34,7 +34,7 @@ onMounted(() => {
           action: h(ToastAction, {
             altText: 'View Markdown',
             onClick: () => {
-              isoModalOpened.value = true
+              isModalOpened.value = true
             },
           }, {
             default: () => {
@@ -61,23 +61,29 @@ onMounted(() => {
   <div>
     <Toaster />
 
-    <AlertDialog v-model:open="isoModalOpened">
-      <AlertDialogContent>
-        <AlertDialogTitle>
-          Markdown
-        </AlertDialogTitle>
-        <AlertDialogHeader>
-          <AlertDialogDescription>
+    <Dialog v-model:open="isModalOpened">
+      <DialogContent class="ubot-sm:max-w-[425px] ubot-grid-rows-[auto_minmax(0,1fr)_auto] ubot-p-0 ubot-max-h-[90dvh]">
+        <DialogHeader class="ubot-p-6 ubot-pb-0">
+          <DialogTitle>ChatGPT-ready Markdown</DialogTitle>
+        </DialogHeader>
+        <div class="ubot-grid ubot-gap-4 ubot-py-4 ubot-overflow-y-auto ubot-px-6">
+          <div class="ubot-flex ubot-flex-col ubot-justify-between ubot-h-[300dvh]">
             <pre>{{ extractContentData.markdown }}</pre>
-          </AlertDialogDescription>
-        </AlertDialogHeader>
-        <AlertDialogFooter>
-          <AlertDialogCancel>Close</AlertDialogCancel>
-          <AlertDialogAction @click="copyText(extractContentData.markdown)">Copy & Close</AlertDialogAction>
-        </AlertDialogFooter>
-      </AlertDialogContent>
-    </AlertDialog>
-
+          </div>
+        </div>
+        <DialogFooter class="ubot-p-6 ubot-pt-0">
+          <Button type="button" variant="secondary">
+            <span @click="isModalOpened = false">Close</span>
+          </Button>
+          <Button type="submit">
+            <span @click="() => {
+              copyText(extractContentData.markdown);
+              isModalOpened = false;
+            }">Copy & Close</span>
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   </div>
 </template>
 
